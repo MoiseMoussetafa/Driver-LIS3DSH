@@ -13,10 +13,11 @@ LIS3DSH_Status LIS3DSH_Write_reg(SPI_HandleTypeDef *hspi,
 		uint8_t *dataW,
 		uint8_t size)
 {
-	dataW[0] = reg_addr;
+	reg_addr &= 0x7F;
+	uint8_t tab[2] = {reg_addr, *dataW};
 
 	CS_LOW;
-	if(HAL_SPI_Transmit(hspi, dataW, size, 10) == HAL_OK)
+	if(HAL_SPI_Transmit(hspi, tab, 2, 10) == HAL_OK)
 	{
 		CS_HIGH;
 		return LIS3DSH_OK;
@@ -31,6 +32,7 @@ LIS3DSH_Status LIS3DSH_Read_reg(SPI_HandleTypeDef *hspi,
 		uint8_t *dataR,
 		uint8_t size)
 {
+	reg_addr |= 0x80;
 	CS_LOW;
 	if(HAL_SPI_Transmit(hspi, &reg_addr, 1, 10) == HAL_OK)
 	{
@@ -52,31 +54,28 @@ LIS3DSH_Status LIS3DSH_Init_t(SPI_HandleTypeDef *hspi,
 	uint8_t spiCheckData[2] = {0x00, 0x00};
 
 	//REG4
-	spiData[0] |= (posInitDef->power & LIS3DSH_ON);
-	spiData[0] |= (posInitDef->axe & LIS3DSH_XY);
+	spiData[0] |= (posInitDef->power | LIS3DSH_ON); //0x60
+	spiData[0] |= (posInitDef->axe | LIS3DSH_XY);	//0x03
 
 	//REG5
-	spiData[1] |= (posInitDef->scale & LIS3DSH_SCALE_16G);
+	spiData[1] |= (posInitDef->scale | LIS3DSH_SCALE_4G);
 
 	if(LIS3DSH_Write_reg(hspi, CTRL_REG4, &spiData[0], 1) == LIS3DSH_OK)
 	{
 		if(LIS3DSH_Read_reg(hspi, CTRL_REG4, &spiCheckData[0], 1) == LIS3DSH_OK)
 		{
-			if((spiCheckData[0] == spiData[0]) && (spiCheckData[1] == spiData[1]))
+			if(spiCheckData[0] == spiData[0])
 			{
-				return LIS3DSH_OK;
-			}
-		}
-	}
-	return LIS3DSH_ERROR;
-
-	if(LIS3DSH_Write_reg(hspi, CTRL_REG5, &spiData[1], 1) == LIS3DSH_OK)
-	{
-		if(LIS3DSH_Read_reg(hspi, CTRL_REG5, &spiCheckData[1], 1) == LIS3DSH_OK)
-		{
-			if((spiCheckData[0] == spiData[0]) && (spiCheckData[1] == spiData[1]))
-			{
-				return LIS3DSH_OK;
+				if(LIS3DSH_Write_reg(hspi, CTRL_REG5, &spiData[1], 1) == LIS3DSH_OK)
+				{
+					if(LIS3DSH_Read_reg(hspi, CTRL_REG5, &spiCheckData[1], 1) == LIS3DSH_OK)
+					{
+						if(spiCheckData[1] == spiData[1])
+						{
+							return LIS3DSH_OK;
+						}
+					}
+				}
 			}
 		}
 	}
@@ -97,17 +96,15 @@ LIS3DSH_Status LIS3DSH_Get_Pos(SPI_HandleTypeDef *hspi,
 		if(LIS3DSH_Read_reg(hspi, OUT_X_H, &posXH, 1) == LIS3DSH_OK)
 		{
 			structResult->resultX = (posXH << 8 | posXL);
-			return LIS3DSH_OK;
-		}
-	}
-	return LIS3DSH_ERROR;
 
-	if(LIS3DSH_Read_reg(hspi, OUT_Y_L, &posYL, 1) == LIS3DSH_OK)
-	{
-		if(LIS3DSH_Read_reg(hspi, OUT_Y_H, &posYH, 1) == LIS3DSH_OK)
-		{
-			structResult->resultY = (posYH << 8 | posYL);
-			return LIS3DSH_OK;
+			if(LIS3DSH_Read_reg(hspi, OUT_Y_L, &posYL, 1) == LIS3DSH_OK)
+			{
+				if(LIS3DSH_Read_reg(hspi, OUT_Y_H, &posYH, 1) == LIS3DSH_OK)
+				{
+					structResult->resultY = (posYH << 8 | posYL);
+					return LIS3DSH_OK;
+				}
+			}
 		}
 	}
 	return LIS3DSH_ERROR;
