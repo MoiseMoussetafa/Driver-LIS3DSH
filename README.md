@@ -63,5 +63,12 @@ Ce diagramme présente les intéractions entre l'utilisateur, le microcontroleur
 
 ![Diagramme interactions](Diagramme_interactions.png)
 
+Le microcontroleur et le LIS3DSH se regroupent sur un même objet, en l'occurrence la carte électronique. Ils communiquent constamment entre eux et lorsque l'utilisateur effectue un mouvement de la carte, l'inclinaison est détecté par l'accéléromètre qui retourne une réponse spécifique, provoquant l'allumage des LEDS correspondantes par le microcontroleur.
 
-Ces 2 derniers se regroupent sur un même objet, en l'occurrence une carte électronique. Ils communiquent constamment entre eux et lorsque l'utilisateur effectue un mouvement de la carte, l'inclinaison est détecté par l'accéléromètre qui retourne une réponse spécifique, provoquant l'allumage des LEDS correspondantes par le microcontroleur.
+### Diagramme de flux
+
+![manquant](manquant.png)
+
+---
+## Conclusion
+
