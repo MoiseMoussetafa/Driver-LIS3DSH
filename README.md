@@ -58,3 +58,10 @@ OUT_Y_H
 
 ## Architecture logicielle
 
+### Diagramme des intéractions
+Ce diagramme présente les intéractions entre l'utilisateur, le microcontroleur et le LIS3DSH.
+
+![Diagramme interactions](Diagramme_interactions.png)
+
+
+Ces 2 derniers se regroupent sur un même objet, en l'occurrence une carte électronique. Ils communiquent constamment entre eux et lorsque l'utilisateur effectue un mouvement de la carte, l'inclinaison est détecté par l'accéléromètre qui retourne une réponse spécifique, provoquant l'allumage des LEDS correspondantes par le microcontroleur.
