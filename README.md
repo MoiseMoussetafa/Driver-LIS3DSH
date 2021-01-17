@@ -10,12 +10,13 @@ C'est un capteur permettant de mesurer l'accélération linéaire de l'objet sur
 Ce driver permet d'allumer les LEDS 3, 4, 5 et 6 en fonction de l'inclinaison de la carte et des paramètres choisis.
 
 ## Schémas de câblage
+Les pins des ports A, D et E correspondent aux pins utilisés sur le microcontroleur.
 
-Câblage du LIS3DSH :
+***Câblage du LIS3DSH :***
 
 ![MEMS](MEMS.png)
 
-Câblage des LEDS : 
+***Câblage des LEDS :***
 
 ![LEDS](LEDS.png)
 
