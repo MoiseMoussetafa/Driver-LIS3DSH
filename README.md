@@ -13,7 +13,8 @@ L'utilisation de ce driver se fait grâce aux 2 fichiers : `LIS3DSH.h` et `LISH3
 
 ---
 ## Schémas de câblage
-Les pins des ports A, D et E correspondent aux pins utilisés sur le microcontroleur.
+Les pins des ports A et D correspondent aux pins utilisés sur le microcontroleur.
+Le port E est spécifique aux fonctions d'interruption. Il n'est pas utilisé sur ce driver.
 
 ***Câblage du LIS3DSH :***
 
