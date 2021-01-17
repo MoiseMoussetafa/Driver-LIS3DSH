@@ -96,7 +96,7 @@ Le microcontroleur et le LIS3DSH se regroupent sur un même objet, en l'occurren
 ### Diagramme de flux
 Ce diagramme présente schématiquement l'organisation générale du déroulement du driver.
 
-![Organigramme](Organigramme.png)
+![Organigramme](docs/Organigramme.png)
 
 Le driver démarre par une initialisation du système. Les données issues de l'accéléromètre sont ensuite récupérées.  
 S'il n'y a pas d'inclinaison détéctées, les LEDS restent éteintes et on analyse les données suivantes.  
