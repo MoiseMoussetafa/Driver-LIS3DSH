@@ -13,7 +13,7 @@ L'utilisation de ce driver se fait grâce aux 2 fichiers : `LIS3DSH.h` et `LISH3
 
 ---
 ## Schémas de câblage
-Les pins des ports A et D correspondent aux pins utilisés sur le microcontroleur.
+Les pins des ports A et D correspondent aux pins utilisés sur le microcontroleur.  
 Le port E est spécifique aux fonctions d'interruption. Il n'est pas utilisé sur ce driver.
 
 ***Câblage du LIS3DSH :***
@@ -63,27 +63,19 @@ Dans `Pinout & Configuration`, on sélectionne `SPI1`, puis :
 
 Dans **Mode** :
 
-```
-Mode : Full-Duplex Master
-```
+- Mode : Full-Duplex Master  
+*Le microcontroleur et au LIS3DSH communiquent en même temps. Le microcontroleur est maitre et le LIS3DSH est esclave.*
 
 Dans **Configuration**, **Parameter Settings** :
 
-```
-Data Size : 8 Bits
-```
-```
-First Bit : MSB First
-```
+- Data Size : 8 Bits
+- First Bit : MSB First
+- Clock Polarity (CPOL) : High
+- Clock Phase (CPHA) : 2 Edge
 
-```
-Clock Polarity (CPOL) : High
-```
-
-```
-Clock Phase (CPHA) : 2 Edge
-```
-
+*La taille de la donnée communiquée par la SPI1 est en 8 bits. Le 1e bit de donnée est celui de poids fort.*  
+*La polarité du signal d'horloge correspond à son état de repos. Pour ce driver, c'est l'état haut.*  
+*La phase du signal d'horloge correspond au front de l'horloge utilisé pour la lecture de la valeur d'un bit sur le signal MISO/MOSI. Pour ce driver, c'est le 2e front.*
 
 ## Architecture logicielle
 
@@ -99,10 +91,8 @@ Ce diagramme présente schématiquement l'organisation générale du déroulemen
 
 ![Organigramme](Organigramme.png)
 
-Le driver démarre par une initialisation du système. Les données issues de l'accéléromètre sont ensuite récupérées.
-
-S'il n'y a pas d'inclinaison détéctées, les LEDS restent éteintes et on analyse les données suivantes.
-
+Le driver démarre par une initialisation du système. Les données issues de l'accéléromètre sont ensuite récupérées.  
+S'il n'y a pas d'inclinaison détéctées, les LEDS restent éteintes et on analyse les données suivantes.  
 Dans le cas contraire, on identifie sur l'inclinaison est positive ou non sur l'axe X et la LED correspondante est allumé, puis de même sur l'axe Y.
 
 ---
