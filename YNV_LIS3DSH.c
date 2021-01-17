@@ -5,6 +5,7 @@
  *      Author: Moise
  */
 
+#include "YNV_LIS3DSH.h"
 
 /* Write register */
 LIS3DSH_Status LIS3DSH_Write_reg(SPI_HandleTypeDef *hspi,
