@@ -47,7 +47,6 @@ scale
 - 16G
 ```
 
-Le LIS3DSH communique avec le microcontroleur via la SPI1.
 Les registres utilisés sont :
 ```
 CTRL_REG4
@@ -57,6 +56,34 @@ OUT_X_H
 OUT_Y_L
 OUT_Y_H
 ```
+
+Le LIS3DSH communique avec le microcontroleur via la SPI1. La configuration de la communication est simplifiée grâce à STM32CubeIDE, à l'aide du fichier .ioc.
+
+Dans `Pinout & Configuration`, on sélectionne `SPI1`, puis : 
+
+Dans **Mode** :
+
+```
+Mode : Full-Duplex Master
+```
+
+Dans **Configuration**, **Parameter Settings** :
+
+```
+Data Size : 8 Bits
+```
+```
+First Bit : MSB First
+```
+
+```
+Clock Polarity (CPOL) : High
+```
+
+```
+Clock Phase (CPHA) : 2 Edge
+```
+
 
 ## Architecture logicielle
 
