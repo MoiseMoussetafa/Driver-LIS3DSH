@@ -69,7 +69,7 @@ Le microcontroleur et le LIS3DSH se regroupent sur un même objet, en l'occurren
 
 ### Diagramme de flux
 
-![manquant](manquant.png)
+![Organigramme](Organigramme.png)
 
 ---
 ## Conclusion
