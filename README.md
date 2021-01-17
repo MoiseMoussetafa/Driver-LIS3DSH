@@ -1,11 +1,24 @@
 # Driver-LIS3DSH
+Ce driver permet d'utiliser l'accéléromètre **LIS3DSH** de **STMicroelectronics**.
 
-Ce driver permet d'utiliser l'accéléromètre LIS3DSH de STMicroelectronics.
+Ce driver a été conçu à l'aide de **STM32CubeIDE1.5.0** sur la carte **STM32F407G-DISC1**.
 
 ## Accéléromètre
 C'est un capteur permettant de mesurer l'accélération linéaire de l'objet sur lequel il est fixé, dans les 3 axes de l'espace X, Y et Z.
 
+## Utilisation
+Ce driver permet d'allumer les LEDS 3, 4, 5 et 6 en fonction de l'inclinaison de la carte et des paramètres choisis.
+
 ## Schémas de câblage
+
+Câblage du LIS3DSH :
+
+![MEMS](MEMS.png)
+
+Câblage des LEDS : 
+
+![LEDS](LEDS.png)
+
 
 ## Paramètres
 Toutes les informations de paramètrage du LIS3DSH sont disponibles sur https://www.st.com/resource/en/datasheet/lis3dsh.pdf
@@ -40,5 +53,5 @@ OUT_Y_L
 OUT_Y_H
 ```
 
-
 ## Architecture logicielle
+
