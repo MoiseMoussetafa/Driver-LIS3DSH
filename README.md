@@ -36,21 +36,39 @@ Toutes les informations de paramètrage du LIS3DSH sont disponibles sur https://
 Pour ce driver, les paramètres modifiables sont :
 ```
 power
-- ON
-- OFF
+- LIS3DSH_ON : Allumer le module
+- LIS3DSH_OFF : Eteindre le module
 
 axe
-- X et Y
-- X uniquement
-- Y uniquement
+- LIS3DSH_XY : Activer l'accéléromètre sur les axes X et Y
+- LIS3DSH_X : Activer l'accéléromètre sur l'axe X uniquement
+- LIS3DSH_Y : Activer l'accéléromètre sur l'axe Y uniquement
 
 scale
-- 2G
-- 4G
-- 6G
-- 8G
-- 16G
+- LIS3DSH_SCALE_2G
+- LIS3DSH_SCALE_4G
+- LIS3DSH_SCALE_6G
+- LIS3DSH_SCALE_8G
+- LIS3DSH_SCALE_16G
 ```
+
+Ces paramètres peuvent être changés directement dans le `LIS3DSH.c`, dans la fonction `LIS3DSH_Init_t`
+```c
+/* Init LIS3DSH */
+LIS3DSH_Status LIS3DSH_Init_t(SPI_HandleTypeDef *hspi,
+		LIS3DSH_Init *posInitDef)
+{
+	uint8_t spiData[2] = {0x00, 0x00};
+	uint8_t spiCheckData[2] = {0x00, 0x00};
+
+	//REG4
+	spiData[0] |= (posInitDef->power | LIS3DSH_ON); //<--
+	spiData[0] |= (posInitDef->axe | LIS3DSH_XY);	//<--
+
+	//REG5
+	spiData[1] |= (posInitDef->scale | LIS3DSH_SCALE_4G); //<--
+  ...
+``` 
 
 Les registres utilisés sont :
 ```
