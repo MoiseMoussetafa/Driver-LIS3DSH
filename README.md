@@ -17,8 +17,9 @@ La pin PA5 correspond au signal d'horloge de la SPI entre le microcontroleur et 
 La pin PA7 correspond au signal MOSI de la SPI entre le microcontroleur et le LIS3DSH.  
 La pin PA6 correspond au signal MISO de la SPI entre le microcontroleur et le LIS3DSH.  
 La pin PE3 correspond au signal CS, permettant d'activer ou non la communication SPI entre le microcontroleur et le LIS3DSH.  
-
 Les pins PE1 et PE2 sont spécifiques aux fonctions d'interruption. Elles ne sont pas utilisées sur ce driver.
+
+Les pins PD12, 13, 14 et 15 correspondent à des GPIO du microcontroleur, permettant de controler l'allumage des LEDS correspondantes sur le circuit.
 
 ***Câblage du LIS3DSH :***
 
