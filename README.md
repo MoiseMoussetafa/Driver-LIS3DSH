@@ -23,11 +23,11 @@ Les pins PD12, 13, 14 et 15 correspondent à des GPIO du microcontroleur, permet
 
 ***Câblage du LIS3DSH :***
 
-![MEMS](MEMS.png)
+![MEMS](docs/MEMS.png)
 
 ***Câblage des LEDS :***
 
-![LEDS](LEDS.png)
+![LEDS](docs/LEDS.png)
 
 
 ## Paramètres
@@ -89,7 +89,7 @@ Dans **Configuration**, **Parameter Settings** :
 ### Diagramme des intéractions
 Ce diagramme présente les intéractions entre l'utilisateur, le microcontroleur et le LIS3DSH, après alimentation du système.
 
-![Diagramme interactions](Diagramme_interactions.png)
+![Diagramme interactions](docs/Diagramme_interactions.png)
 
 Le microcontroleur et le LIS3DSH se regroupent sur un même objet, en l'occurrence la carte électronique. Ils communiquent constamment entre eux et lorsque l'utilisateur effectue un mouvement de la carte, l'inclinaison est détecté par l'accéléromètre qui retourne une réponse spécifique, provoquant l'allumage des LEDS correspondantes par le microcontroleur.
 
