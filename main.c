@@ -46,6 +46,8 @@ LIS3DSH_Status LIS3DSH_Status_Check;
 uint8_t try = 0;
 LIS3DSH_Result UserResult;
 
+uint8_t test = 0;
+
 /* USER CODE BEGIN PV */
 
 /* USER CODE END PV */
@@ -98,9 +100,7 @@ int main(void)
 	LIS3DSH_Init_t(&hspi1, &UserParam);
 
 	// Custom Init
-	UserParam.power = LIS3DSH_ON;
-	UserParam.axe = LIS3DSH_XY;
-	UserParam.scale = LIS3DSH_SCALE_16G;
+	// to do
 
 	// Init check
 	do
@@ -118,31 +118,54 @@ int main(void)
 		HAL_Delay(500);
 	}
 
+
 	/* USER CODE END 2 */
 
 	/* Infinite loop */
 	/* USER CODE BEGIN WHILE */
 	while (1)
 	{
+		//LIS3DSH_Read_reg(&hspi1, LIS3DSH_WHO_AM_I, &test, 2);
+
 		LIS3DSH_Get_Pos(&hspi1, &UserResult);
 
-		if(UserResult.resultX > 0)
+		if(UserResult.resultX > -700)
+		{
+			HAL_GPIO_WritePin(GPIOD, LD5_Pin, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOD, LD4_Pin, GPIO_PIN_RESET);
+		}
+
+		if(UserResult.resultX < -2000)
+		{
+			HAL_GPIO_WritePin(GPIOD, LD5_Pin, GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(GPIOD, LD4_Pin, GPIO_PIN_SET);
+		}
+
+		if(UserResult.resultX < -700 && UserResult.resultX > -2000)
+		{
+			HAL_GPIO_WritePin(GPIOD, LD5_Pin, GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(GPIOD, LD4_Pin, GPIO_PIN_RESET);
+		}
+
+
+		if(UserResult.resultY > 300)
 		{
 			HAL_GPIO_WritePin(GPIOD, LD3_Pin, GPIO_PIN_SET);
 			HAL_GPIO_WritePin(GPIOD, LD6_Pin, GPIO_PIN_RESET);
-		}else{
+		}
+
+		if(UserResult.resultY < -500)
+		{
 			HAL_GPIO_WritePin(GPIOD, LD3_Pin, GPIO_PIN_RESET);
 			HAL_GPIO_WritePin(GPIOD, LD6_Pin, GPIO_PIN_SET);
 		}
 
-		if(UserResult.resultY > 0)
+		if(UserResult.resultY < 300 && UserResult.resultY > -700)
 		{
-			HAL_GPIO_WritePin(GPIOD, LD3_Pin, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOD, LD3_Pin, GPIO_PIN_RESET);
 			HAL_GPIO_WritePin(GPIOD, LD6_Pin, GPIO_PIN_RESET);
-		}else{
-			HAL_GPIO_WritePin(GPIOD, LD5_Pin, GPIO_PIN_RESET);
-			HAL_GPIO_WritePin(GPIOD, LD4_Pin, GPIO_PIN_SET);
 		}
+
 		/* USER CODE END WHILE */
 
 		/* USER CODE BEGIN 3 */
