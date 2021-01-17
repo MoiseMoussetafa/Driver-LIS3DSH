@@ -11,6 +11,7 @@ Ce driver permet d'allumer les LEDS 3, 4, 5 et 6 en fonction de l'inclinaison de
 
 L'utilisation de ce driver se fait grâce aux 2 fichiers : `LIS3DSH.h` et `LISH3DSH.c`.
 
+---
 ## Schémas de câblage
 Les pins des ports A, D et E correspondent aux pins utilisés sur le microcontroleur.
 
