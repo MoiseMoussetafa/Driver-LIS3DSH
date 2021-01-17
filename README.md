@@ -61,15 +61,22 @@ OUT_Y_H
 ## Architecture logicielle
 
 ### Diagramme des intéractions
-Ce diagramme présente les intéractions entre l'utilisateur, le microcontroleur et le LIS3DSH.
+Ce diagramme présente les intéractions entre l'utilisateur, le microcontroleur et le LIS3DSH, après alimentation du système.
 
 ![Diagramme interactions](Diagramme_interactions.png)
 
 Le microcontroleur et le LIS3DSH se regroupent sur un même objet, en l'occurrence la carte électronique. Ils communiquent constamment entre eux et lorsque l'utilisateur effectue un mouvement de la carte, l'inclinaison est détecté par l'accéléromètre qui retourne une réponse spécifique, provoquant l'allumage des LEDS correspondantes par le microcontroleur.
 
 ### Diagramme de flux
+Ce diagramme présente schématiquement l'organisation générale du déroulement du driver.
 
 ![Organigramme](Organigramme.png)
+
+Le driver démarre par une initialisation du système. Les données issues de l'accéléromètre sont ensuite récupérées.
+
+S'il n'y a pas d'inclinaison détéctées, les LEDS restent éteintes et on analyse les données suivantes.
+
+Dans le cas contraire, on identifie sur l'inclinaison est positive ou non sur l'axe X et la LED correspondante est allumé, puis de même sur l'axe Y.
 
 ---
 ## Conclusion
