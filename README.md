@@ -82,6 +82,8 @@ Dans **Configuration**, **Parameter Settings** :
 *La polarité du signal d'horloge correspond à son état de repos. Pour ce driver, c'est l'état haut.*  
 *La phase du signal d'horloge correspond au front de l'horloge utilisé pour la lecture de la valeur d'un bit sur le signal MISO/MOSI. Pour ce driver, c'est le 2e front.*
 
+*Toutes les autres informations sont laissées dans leurs états par défaut.*
+
 ## Architecture logicielle
 
 ### Diagramme des intéractions
