@@ -13,7 +13,7 @@ LIS3DSH_Status LIS3DSH_Write_reg(SPI_HandleTypeDef *hspi,
 		uint8_t *dataW,
 		uint8_t size)
 {
-	reg_addr &= 0x7F;
+	reg_addr &= 0x7F; //Masking : 1st bit at 0 for writing
 	uint8_t tab[2] = {reg_addr, *dataW};
 
 	CS_LOW;
@@ -32,7 +32,7 @@ LIS3DSH_Status LIS3DSH_Read_reg(SPI_HandleTypeDef *hspi,
 		uint8_t *dataR,
 		uint8_t size)
 {
-	reg_addr |= 0x80;
+	reg_addr |= 0x80; //Masking : 1st bit at 1 for reading
 	CS_LOW;
 	if(HAL_SPI_Transmit(hspi, &reg_addr, 1, 10) == HAL_OK)
 	{
@@ -50,14 +50,14 @@ LIS3DSH_Status LIS3DSH_Read_reg(SPI_HandleTypeDef *hspi,
 LIS3DSH_Status LIS3DSH_Init_t(SPI_HandleTypeDef *hspi,
 		LIS3DSH_Init *posInitDef)
 {
-	uint8_t spiData[2] = {0x00, 0x00};
-	uint8_t spiCheckData[2] = {0x00, 0x00};
+	uint8_t spiData[2] = {0x00, 0x00};		//Data to send to LIS3DSH
+	uint8_t spiCheckData[2] = {0x00, 0x00};	//Data to read from LISH3DSH
 
-	//REG4
-	spiData[0] |= (posInitDef->power | LIS3DSH_ON); //0x60
-	spiData[0] |= (posInitDef->axe | LIS3DSH_XY);	//0x03
+	//Config REG4
+	spiData[0] |= (posInitDef->power | LIS3DSH_ON);
+	spiData[0] |= (posInitDef->axe | LIS3DSH_XY);
 
-	//REG5
+	//Config REG5
 	spiData[1] |= (posInitDef->scale | LIS3DSH_SCALE_4G);
 
 	if(LIS3DSH_Write_reg(hspi, CTRL_REG4, &spiData[0], 1) == LIS3DSH_OK)
