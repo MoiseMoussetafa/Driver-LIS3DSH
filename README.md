@@ -58,15 +58,15 @@ Ces paramètres peuvent être changés directement dans le `LIS3DSH.c`, dans la 
 LIS3DSH_Status LIS3DSH_Init_t(SPI_HandleTypeDef *hspi,
 		LIS3DSH_Init *posInitDef)
 {
-	uint8_t spiData[2] = {0x00, 0x00};		//Data to send to LIS3DSH
+	uint8_t spiData[2] = {0x00, 0x00};	//Data to send to LIS3DSH
 	uint8_t spiCheckData[2] = {0x00, 0x00};	//Data to read from LISH3DSH
 
 	//Config REG4
-	spiData[0] |= (posInitDef->power | LIS3DSH_ON);	<---
-	spiData[0] |= (posInitDef->axe | LIS3DSH_XY);	<---
+	spiData[0] |= (posInitDef->power | LIS3DSH_ON);	//<---
+	spiData[0] |= (posInitDef->axe | LIS3DSH_XY);	//<---
 
 	//Config REG5
-	spiData[1] |= (posInitDef->scale | LIS3DSH_SCALE_4G);	<---
+	spiData[1] |= (posInitDef->scale | LIS3DSH_SCALE_4G);	//<---
   ...
 ``` 
 
