@@ -5,7 +5,8 @@ Ce pilote a été conçu à l'aide de **STM32CubeIDE** sur la carte **STM32F407G
 Lien Git : https://github.com/MoiseMoussetafa/Driver-LIS3DSH
 
 ## Accéléromètre
-C'est un capteur permettant de mesurer l'accélération linéaire de l'objet sur lequel il est fixé, dans les 3 axes de l'espace X, Y et Z.
+C'est un capteur permettant de mesurer l'accélération linéaire de l'objet sur lequel il est fixé, dans les 3 axes de l'espace X, Y et Z.  
+L'accélération linéaire permet alors de mesurer l'inclinaison en X et Y.
 
 ## Utilisation
 Ce driver permet d'allumer les LEDS 3, 4, 5 et 6 en fonction de l'inclinaison de la carte et des paramètres choisis.
