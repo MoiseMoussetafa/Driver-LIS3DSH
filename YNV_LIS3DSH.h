@@ -17,6 +17,7 @@
 #define OUT_X_H				0x29
 #define OUT_Y_L				0x2A
 #define OUT_Y_H				0x2B
+#define LIS3DSH_WHO_AM_I	0x0F
 
 /* Registers address */
 #define CTRL_REG4 			0x20
@@ -37,9 +38,9 @@
 #define LIS3DSH_SCALE_8G	((uint8_t) 0x18)
 #define LIS3DSH_SCALE_16G	((uint8_t) 0x20)
 
+/* Chip Select for SPI Define */
 #define CS_LOW			HAL_GPIO_WritePin(GPIOE, GPIO_PIN_3, GPIO_PIN_RESET)
 #define CS_HIGH			HAL_GPIO_WritePin(GPIOE, GPIO_PIN_3, GPIO_PIN_SET)
-
 
 /* Return status enum */
 typedef enum {
@@ -79,7 +80,6 @@ LIS3DSH_Status LIS3DSH_Init_t(SPI_HandleTypeDef *hspi,
 /* Get position */
 LIS3DSH_Status LIS3DSH_Get_Pos(SPI_HandleTypeDef *hspi,
 		LIS3DSH_Result* structResult);
-
 
 
 #endif /* INC_YNV_LIS3DSH_H_ */
