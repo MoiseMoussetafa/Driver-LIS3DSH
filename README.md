@@ -125,6 +125,8 @@ Le driver démarre par une initialisation du système. Les données issues de l'
 S'il n'y a pas d'inclinaison détéctées, les LEDS restent éteintes et on analyse les données suivantes.  
 Dans le cas contraire, on identifie sur l'inclinaison est positive ou non sur l'axe X et la LED correspondante est allumé, puis de même sur l'axe Y.
 
+## Acquisitions à l'oscilloscope
+
 ---
 ## Conclusion
 ça marchait pas
