@@ -95,6 +95,7 @@ Dans **Configuration**, **Parameter Settings** :
 
 - Data Size : 8 Bits
 - First Bit : MSB First
+- Prescaler (for Baud Rate) : 32
 - Clock Polarity (CPOL) : High
 - Clock Phase (CPHA) : 2 Edge
 
@@ -103,6 +104,8 @@ Dans **Configuration**, **Parameter Settings** :
 *La phase du signal d'horloge correspond au front de l'horloge utilisé pour la lecture de la valeur d'un bit sur le signal MISO/MOSI. Pour ce driver, c'est le 2e front.*
 
 *Toutes les autres informations sont laissées dans leurs états par défaut.*
+
+Dans `Clock Configuration`, on modifie la valeur de **HCLK (MHz)** à **64**. On obtient alors un Baud Rate de communication de 1 MBits/s (avec le Prescaler précédémment configuré).
 
 ## Architecture logicielle
 
