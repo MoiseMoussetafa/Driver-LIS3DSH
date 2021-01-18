@@ -1,7 +1,8 @@
 # Driver-LIS3DSH
-Ce driver permet d'utiliser l'accéléromètre **LIS3DSH** de **STMicroelectronics**.
+Ce driver permet d'utiliser l'accéléromètre **LIS3DSH** de **STMicroelectronics**.  
+Ce pilote a été conçu à l'aide de **STM32CubeIDE** sur la carte **STM32F407G-DISC1**.
 
-Ce driver a été conçu à l'aide de **STM32CubeIDE1.5.0** sur la carte **STM32F407G-DISC1**.
+Lien Git : https://github.com/MoiseMoussetafa/Driver-LIS3DSH
 
 ## Accéléromètre
 C'est un capteur permettant de mesurer l'accélération linéaire de l'objet sur lequel il est fixé, dans les 3 axes de l'espace X, Y et Z.
