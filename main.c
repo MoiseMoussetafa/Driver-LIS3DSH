@@ -129,41 +129,25 @@ int main(void)
 
 		LIS3DSH_Get_Pos(&hspi1, &UserResult);
 
+		HAL_GPIO_WritePin(GPIOD, LD3_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOD, LD4_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOD, LD5_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOD, LD6_Pin, GPIO_PIN_RESET);
+
 		if(UserResult.resultX > -700)
 		{
 			HAL_GPIO_WritePin(GPIOD, LD5_Pin, GPIO_PIN_SET);
-			HAL_GPIO_WritePin(GPIOD, LD4_Pin, GPIO_PIN_RESET);
-		}
-
-		if(UserResult.resultX < -2000)
+		}else if(UserResult.resultX < -2000)
 		{
-			HAL_GPIO_WritePin(GPIOD, LD5_Pin, GPIO_PIN_RESET);
 			HAL_GPIO_WritePin(GPIOD, LD4_Pin, GPIO_PIN_SET);
 		}
-
-		if(UserResult.resultX < -700 && UserResult.resultX > -2000)
-		{
-			HAL_GPIO_WritePin(GPIOD, LD5_Pin, GPIO_PIN_RESET);
-			HAL_GPIO_WritePin(GPIOD, LD4_Pin, GPIO_PIN_RESET);
-		}
-
 
 		if(UserResult.resultY > 300)
 		{
 			HAL_GPIO_WritePin(GPIOD, LD3_Pin, GPIO_PIN_SET);
-			HAL_GPIO_WritePin(GPIOD, LD6_Pin, GPIO_PIN_RESET);
-		}
-
-		if(UserResult.resultY < -500)
+		}else if(UserResult.resultY < -500)
 		{
-			HAL_GPIO_WritePin(GPIOD, LD3_Pin, GPIO_PIN_RESET);
 			HAL_GPIO_WritePin(GPIOD, LD6_Pin, GPIO_PIN_SET);
-		}
-
-		if(UserResult.resultY < 300 && UserResult.resultY > -700)
-		{
-			HAL_GPIO_WritePin(GPIOD, LD3_Pin, GPIO_PIN_RESET);
-			HAL_GPIO_WritePin(GPIOD, LD6_Pin, GPIO_PIN_RESET);
 		}
 
 		/* USER CODE END WHILE */
@@ -240,7 +224,7 @@ static void MX_SPI1_Init(void)
 	hspi1.Init.CLKPolarity = SPI_POLARITY_HIGH;
 	hspi1.Init.CLKPhase = SPI_PHASE_2EDGE;
 	hspi1.Init.NSS = SPI_NSS_SOFT;
-	hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
+	hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_32;
 	hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
 	hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
 	hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
