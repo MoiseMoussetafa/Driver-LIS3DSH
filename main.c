@@ -45,7 +45,7 @@ LIS3DSH_Init UserParam;
 LIS3DSH_Status LIS3DSH_Status_Check;
 uint8_t try = 0;
 LIS3DSH_Result UserResult;
-uint8_t test = 0;
+LIS3DSH_Result Calibration;
 
 /* USER CODE BEGIN PV */
 
@@ -108,12 +108,19 @@ int main(void)
 	}while(try < 3 && LIS3DSH_Status_Check == LIS3DSH_ERROR);
 
 	// Blocked in the follow "while if" Init check fails (blink led)
-
 	while(LIS3DSH_Status_Check == LIS3DSH_ERROR)
 	{
 		HAL_GPIO_TogglePin(GPIOD, LD5_Pin);
 		HAL_Delay(500);
 	}
+
+	// Calibration
+	HAL_GPIO_WritePin(GPIOD, LD3_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOD, LD4_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOD, LD5_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOD, LD6_Pin, GPIO_PIN_SET);
+	Calibration = LIS3DSH_Calibration(&hspi1, &UserResult);
+	HAL_Delay(200);
 
 	/* USER CODE END 2 */
 
@@ -121,28 +128,29 @@ int main(void)
 	/* USER CODE BEGIN WHILE */
 	while (1)
 	{
-		// Read test function
-		//LIS3DSH_Read_reg(&hspi1, LIS3DSH_WHO_AM_I, &test, 2);
-
-		//Recuperation positions
-		LIS3DSH_Get_Pos(&hspi1, &UserResult);
-
 		//All LEDS off (default)
 		HAL_GPIO_WritePin(GPIOD, LD3_Pin, GPIO_PIN_RESET);
 		HAL_GPIO_WritePin(GPIOD, LD4_Pin, GPIO_PIN_RESET);
 		HAL_GPIO_WritePin(GPIOD, LD5_Pin, GPIO_PIN_RESET);
 		HAL_GPIO_WritePin(GPIOD, LD6_Pin, GPIO_PIN_RESET);
 
+		// Gross positions recovery
+		LIS3DSH_Get_Pos(&hspi1, &UserResult);
+
+		// Positions after flat calibration
+		UserResult.resultX = UserResult.resultX - Calibration.resultX;
+		UserResult.resultY = UserResult.resultY - Calibration.resultY;
+
 		//LEDS ON according to inclination
-		if(UserResult.resultX > -700)
+		if(UserResult.resultX > 500)
 		{
 			HAL_GPIO_WritePin(GPIOD, LD5_Pin, GPIO_PIN_SET);
-		}else if(UserResult.resultX < -2000)
+		}else if(UserResult.resultX < -500)
 		{
 			HAL_GPIO_WritePin(GPIOD, LD4_Pin, GPIO_PIN_SET);
 		}
 
-		if(UserResult.resultY > 300)
+		if(UserResult.resultY > 500)
 		{
 			HAL_GPIO_WritePin(GPIOD, LD3_Pin, GPIO_PIN_SET);
 		}else if(UserResult.resultY < -500)
