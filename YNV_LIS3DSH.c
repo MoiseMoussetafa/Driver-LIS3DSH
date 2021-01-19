@@ -109,3 +109,24 @@ LIS3DSH_Status LIS3DSH_Get_Pos(SPI_HandleTypeDef *hspi,
 	}
 	return LIS3DSH_ERROR;
 }
+
+/* Calibration */
+LIS3DSH_Result LIS3DSH_Calibration(SPI_HandleTypeDef *hspi,
+		LIS3DSH_Result* structCalibration)
+{
+	LIS3DSH_Result Calibration;
+	Calibration.resultX = 0;
+	Calibration.resultY = 0;
+
+	for(int8_t i=0; i<=2; i++)
+	{
+		LIS3DSH_Get_Pos(hspi, structCalibration);
+		Calibration.resultX = Calibration.resultX + structCalibration->resultX;
+		Calibration.resultY = Calibration.resultY + structCalibration->resultY;
+	}
+	Calibration.resultX = Calibration.resultX / 3;
+	Calibration.resultY = Calibration.resultY / 3;
+
+	return Calibration;
+}
+
