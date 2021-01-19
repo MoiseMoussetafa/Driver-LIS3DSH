@@ -128,18 +128,18 @@ int main(void)
 	/* USER CODE BEGIN WHILE */
 	while (1)
 	{
-		//All LEDS off (default)
-		HAL_GPIO_WritePin(GPIOD, LD3_Pin, GPIO_PIN_RESET);
-		HAL_GPIO_WritePin(GPIOD, LD4_Pin, GPIO_PIN_RESET);
-		HAL_GPIO_WritePin(GPIOD, LD5_Pin, GPIO_PIN_RESET);
-		HAL_GPIO_WritePin(GPIOD, LD6_Pin, GPIO_PIN_RESET);
-
 		// Gross positions recovery
 		LIS3DSH_Get_Pos(&hspi1, &UserResult);
 
 		// Positions after flat calibration
 		UserResult.resultX = UserResult.resultX - Calibration.resultX;
 		UserResult.resultY = UserResult.resultY - Calibration.resultY;
+
+		//All LEDS off (default)
+		HAL_GPIO_WritePin(GPIOD, LD3_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOD, LD4_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOD, LD5_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOD, LD6_Pin, GPIO_PIN_RESET);
 
 		//LEDS ON according to inclination
 		if(UserResult.resultX > 500)
