@@ -81,5 +81,9 @@ LIS3DSH_Status LIS3DSH_Init_t(SPI_HandleTypeDef *hspi,
 LIS3DSH_Status LIS3DSH_Get_Pos(SPI_HandleTypeDef *hspi,
 		LIS3DSH_Result* structResult);
 
+/* Calibration */
+LIS3DSH_Result LIS3DSH_Calibration(SPI_HandleTypeDef *hspi,
+		LIS3DSH_Result* structCalibration);
+
 
 #endif /* INC_YNV_LIS3DSH_H_ */
