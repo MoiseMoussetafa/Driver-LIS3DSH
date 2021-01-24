@@ -123,9 +123,17 @@ Ce diagramme présente schématiquement l'organisation générale du déroulemen
 
 Le driver démarre par une initialisation du système. Les données issues de l'accéléromètre sont ensuite récupérées.  
 S'il n'y a pas d'inclinaison détéctées, les LEDS restent éteintes et on analyse les données suivantes.  
-Dans le cas contraire, on identifie sur l'inclinaison est positive ou non sur l'axe X et la LED correspondante est allumé, puis de même sur l'axe Y.
+Dans le cas contraire, on identifie sur l'inclinaison est positive ou non sur l'axe X et la LED correspondante est allumée, puis de même sur l'axe Y.
 
 ## Acquisitions à l'oscilloscope
+![1CLK2MISO](https://raw.githubusercontent.com/MoiseMoussetafa/Driver-LIS3DSH/main/docs/1CLK_2MISO.png?token=ARJF43DBXOFUA7JCNM2VYP3AC3WUW)
+Le signal bleu correspond à la signal d'horloge.  
+Le signal rouge correspond au signal MISO, la donnée est 1101 0000, soit 0xD0.
+
+![1CLK2MOSI](https://raw.githubusercontent.com/MoiseMoussetafa/Driver-LIS3DSH/main/docs/1CLK_2MOSI.png?token=ARJF43ENNBVANA5M5YIJFDTAC3WU2)
+Le signal bleu correspond à la signal d'horloge.  
+Le signal rouge correspond au signal MOSI, la donnée est 1010 1010, soit 
+
 
 ---
 ## Conclusion
