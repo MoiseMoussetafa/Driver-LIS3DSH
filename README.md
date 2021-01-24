@@ -32,6 +32,19 @@ Les pins PD12, 13, 14 et 15 correspondent à des GPIO du microcontroleur, permet
 ![LEDS](https://raw.githubusercontent.com/MoiseMoussetafa/Driver-LIS3DSH/main/docs/LEDS.png?token=ARJF43FYTDLZC2HZXDSL5RDAB3HXU)
 
 
+## SPI
+Ce driver fonctionne grâce au bus SPI.  
+Il y a donc 4 signaux importants pour cette communication :
+- Signal d'horloge (SCK) qui cadence la communication
+- Chip Select (CS) permettant d'activer ou non la communication
+- MISO correspondant au signal entrant dans le microcontroleur (Master) et sortant du LIS3DSH (Slave)
+- MOSI correspondant au signal sortant du microcontroleur (Master) et entrant dans le LIS3DSH (Slave)
+
+Parmi les caractéristiques du fonctionnement de cette SPI :
+- le 1e bit du signal MISO est à 1 lorsqu'une lecture est effectuée. Sinon c'est une écriture.
+- CS est à l'état bas pour activer la communication. Sinon il est à l'état haut.
+
+
 ## Paramètres
 Toutes les informations de paramètrage du LIS3DSH sont disponibles sur https://www.st.com/resource/en/datasheet/lis3dsh.pdf
 
@@ -126,13 +139,24 @@ S'il n'y a pas d'inclinaison détéctées, les LEDS restent éteintes et on anal
 Dans le cas contraire, on identifie sur l'inclinaison est positive ou non sur l'axe X et la LED correspondante est allumée, puis de même sur l'axe Y.
 
 ## Acquisitions à l'oscilloscope
-![1CLK2MISO](https://raw.githubusercontent.com/MoiseMoussetafa/Driver-LIS3DSH/main/docs/1CLK_2MISO.png?token=ARJF43DBXOFUA7JCNM2VYP3AC3WUW)
-Le signal bleu correspond à la signal d'horloge.  
+![1CLK2MISO](https://raw.githubusercontent.com/MoiseMoussetafa/Driver-LIS3DSH/main/docs/1CLK_2MISO.png?token=ARJF43DBXOFUA7JCNM2VYP3AC3WUW)  
+Le signal bleu correspond au signal d'horloge.  
 Le signal rouge correspond au signal MISO, la donnée est 1101 0000, soit 0xD0.
 
-![1CLK2MOSI](https://raw.githubusercontent.com/MoiseMoussetafa/Driver-LIS3DSH/main/docs/1CLK_2MOSI.png?token=ARJF43ENNBVANA5M5YIJFDTAC3WU2)
-Le signal bleu correspond à la signal d'horloge.  
-Le signal rouge correspond au signal MOSI, la donnée est 1010 1010, soit 
+![1CLK2MOSI](https://raw.githubusercontent.com/MoiseMoussetafa/Driver-LIS3DSH/main/docs/1CLK_2MOSI.png?token=ARJF43ENNBVANA5M5YIJFDTAC3WU2)  
+Le signal bleu correspond au signal d'horloge.  
+Le signal rouge correspond au signal MOSI, la donnée est 1010 1010, soit 0xAA.  
+Le 1e bit est à 1, signifiant une lecture de registre. Le registre lu est donc 0010 1010, soit 0x2A. Cela correspond à OUT_Y_L (la donnée basse sur l'axe Y).
+
+![1CS2CLK](https://raw.githubusercontent.com/MoiseMoussetafa/Driver-LIS3DSH/main/docs/1CS_2CLK.png?token=ARJF43FURU6BQPXFFXQXNCTAC4M7Y)  
+Le signal bleu correspond au signal Chip Select, correspondant à l'activation de la SPI concernée.
+Le signal rouge correspond au signal d'horloge.  
+Lorsque CS est à l'état bas, la SPI est activée et le signal d'horloge est envoyé. A l'inverse il n'y a pas de signal d'horloge lorsque CS est à l'état haut, désactivant la SPI.
+
+![1CS2MISO](https://raw.githubusercontent.com/MoiseMoussetafa/Driver-LIS3DSH/main/docs/1CS_2MISO.png?token=ARJF43BJ2LBTOMMB7OFPEZ3AC4M74)  
+Le signal bleu correspond au signal Chip Select, correspondant à l'activation de la SPI concernée.
+Le signal rouge correspond au signal MOSI. Il y a plusieurs données sur la trame.  
+Les données ne circulent que lorsque CS est à l'état bas puisque c'est dans ce cas que la SPI est activée.
 
 
 ---
