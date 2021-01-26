@@ -124,14 +124,14 @@ Dans `Clock Configuration`, on modifie la valeur de **HCLK (MHz)** à **64**. On
 ### Diagramme des intéractions
 Ce diagramme présente les intéractions entre l'utilisateur, le microcontroleur et le LIS3DSH, après alimentation du système.
 
-![Diagramme interactions](https://raw.githubusercontent.com/MoiseMoussetafa/Driver-LIS3DSH/main/docs/Diagramme_interactions.png?token=ARJF43E6UJHHLQKT5HKLFRDAB3H4A)
+![Diagramme interactions](https://raw.githubusercontent.com/MoiseMoussetafa/Driver-LIS3DSH/main/docs/Diagramme_interactions.png?token=ARJF43EUVMEYI5KH4C72AQ3ADFKZG)
 
 Le microcontroleur et le LIS3DSH se regroupent sur un même objet, en l'occurrence la carte électronique. Ils communiquent constamment entre eux et lorsque l'utilisateur effectue un mouvement de la carte, l'inclinaison est détecté par l'accéléromètre qui retourne une réponse spécifique, provoquant l'allumage des LEDS correspondantes par le microcontroleur.
 
 ### Diagramme de flux
 Ce diagramme présente schématiquement l'organisation générale du déroulement du driver.
 
-![Organigramme](https://raw.githubusercontent.com/MoiseMoussetafa/Driver-LIS3DSH/main/docs/Organigramme.png?token=ARJF43BVN4PLRGZLDMVJN6TAB3H2M)
+![Organigramme](https://raw.githubusercontent.com/MoiseMoussetafa/Driver-LIS3DSH/main/docs/Organigramme.png?token=ARJF43CO7QSJ6BL2CVLLXQLADFK2Q)
 
 Le driver démarre par une initialisation du système. Les données issues de l'accéléromètre sont ensuite récupérées.  
 S'il n'y a pas d'inclinaison détéctées, les LEDS restent éteintes et on analyse les données suivantes.  
