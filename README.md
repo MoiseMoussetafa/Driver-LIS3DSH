@@ -161,5 +161,5 @@ Les données ne circulent que lorsque CS est à l'état bas puisque c'est dans c
 ---
 ## Conclusion
 L'étude du fonctionnement de la SPI est essentiel pour programmer le driver de cet accéléromètre avec la STM32.  
-L'utilisation de STM32CubeIDE facilite grandement les configurations puisqu'il n'est pas nécessaire d'écrire les lignes de code, il suffit de choisir ce qu'on veut et le code est généré automatiquement.
+L'utilisation de STM32CubeIDE facilite grandement les configurations puisqu'il n'est pas nécessaire d'écrire les lignes de code, il suffit de choisir ce qu'on veut et le code est généré automatiquement. Par la suite les librairies sont très pratiques pour coder. Avoir une vision d'ensemble avec des définitions explicites permet de ne pas se perdre avec tout ce qu'on a à notre disposition.    
 Finalement, le driver est fonctionnel.
