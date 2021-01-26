@@ -25,11 +25,11 @@ Les pins PD12, 13, 14 et 15 correspondent à des GPIO du microcontroleur, permet
 
 ***Câblage du LIS3DSH :***
 
-![MEMS](https://raw.githubusercontent.com/MoiseMoussetafa/Driver-LIS3DSH/main/docs/MEMS.png?token=ARJF43BXDPQMM7YZVM42CV3AB3HUM)
+![MEMS](https://raw.githubusercontent.com/MoiseMoussetafa/Driver-LIS3DSH/main/docs/MEMS.png?token=ARJF43EAEUWCDZBNZ5UARD3ADFJGG)
 
 ***Câblage des LEDS :***
 
-![LEDS](https://raw.githubusercontent.com/MoiseMoussetafa/Driver-LIS3DSH/main/docs/LEDS.png?token=ARJF43FYTDLZC2HZXDSL5RDAB3HXU)
+![LEDS](https://raw.githubusercontent.com/MoiseMoussetafa/Driver-LIS3DSH/main/docs/LEDS.png?token=ARJF43AGLO6A26F4VFMYVVLADFJIU)
 
 
 ## SPI
