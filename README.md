@@ -8,6 +8,18 @@ Lien Git : https://github.com/MoiseMoussetafa/Driver-LIS3DSH
 C'est un capteur permettant de mesurer l'accélération linéaire de l'objet sur lequel il est fixé, dans les 3 axes de l'espace X, Y et Z.  
 L'accélération linéaire permet alors de mesurer l'inclinaison en X et Y.
 
+## SPI
+Ce driver fonctionne grâce au bus SPI.  
+Il y a donc 4 signaux importants pour cette communication :
+- Signal d'horloge (SCK) qui cadence la communication
+- Chip Select (CS) permettant d'activer ou non la communication
+- MISO correspondant au signal entrant dans le microcontroleur (Master) et sortant du LIS3DSH (Slave)
+- MOSI correspondant au signal sortant du microcontroleur (Master) et entrant dans le LIS3DSH (Slave)
+
+Parmi les caractéristiques du fonctionnement de cette SPI :
+- le 1e bit du signal MISO est à 1 lorsqu'une lecture est effectuée. Sinon c'est une écriture.
+- CS est à l'état bas pour activer la communication. Sinon il est à l'état haut.
+
 ## Utilisation
 Ce driver permet d'allumer les LEDS 3, 4, 5 et 6 en fonction de l'inclinaison de la carte et des paramètres choisis.
 
@@ -30,19 +42,6 @@ Les pins PD12, 13, 14 et 15 correspondent à des GPIO du microcontroleur, permet
 ***Câblage des LEDS :***
 
 ![LEDS](https://raw.githubusercontent.com/MoiseMoussetafa/Driver-LIS3DSH/main/docs/LEDS.png?token=ARJF43AGLO6A26F4VFMYVVLADFJIU)
-
-
-## SPI
-Ce driver fonctionne grâce au bus SPI.  
-Il y a donc 4 signaux importants pour cette communication :
-- Signal d'horloge (SCK) qui cadence la communication
-- Chip Select (CS) permettant d'activer ou non la communication
-- MISO correspondant au signal entrant dans le microcontroleur (Master) et sortant du LIS3DSH (Slave)
-- MOSI correspondant au signal sortant du microcontroleur (Master) et entrant dans le LIS3DSH (Slave)
-
-Parmi les caractéristiques du fonctionnement de cette SPI :
-- le 1e bit du signal MISO est à 1 lorsqu'une lecture est effectuée. Sinon c'est une écriture.
-- CS est à l'état bas pour activer la communication. Sinon il est à l'état haut.
 
 
 ## Paramètres
