@@ -148,17 +148,18 @@ Le signal rouge correspond au signal MOSI, la donnée est 1010 1010, soit 0xAA.
 Le 1e bit est à 1, signifiant une lecture de registre. Le registre lu est donc 0010 1010, soit 0x2A. Cela correspond à OUT_Y_L (la donnée basse sur l'axe Y).
 
 ![1CS2CLK](https://raw.githubusercontent.com/MoiseMoussetafa/Driver-LIS3DSH/main/docs/1CS_2CLK.png?token=ARJF43FURU6BQPXFFXQXNCTAC4M7Y)  
-Le signal bleu correspond au signal Chip Select, correspondant à l'activation de la SPI concernée.
+Le signal bleu correspond au signal Chip Select, correspondant à l'activation de la SPI concernée.  
 Le signal rouge correspond au signal d'horloge.  
 Lorsque CS est à l'état bas, la SPI est activée et le signal d'horloge est envoyé. A l'inverse il n'y a pas de signal d'horloge lorsque CS est à l'état haut, désactivant la SPI.
 
 ![1CS2MISO](https://raw.githubusercontent.com/MoiseMoussetafa/Driver-LIS3DSH/main/docs/1CS_2MISO.png?token=ARJF43BJ2LBTOMMB7OFPEZ3AC4M74)  
-Le signal bleu correspond au signal Chip Select, correspondant à l'activation de la SPI concernée.
+Le signal bleu correspond au signal Chip Select, correspondant à l'activation de la SPI concernée.  
 Le signal rouge correspond au signal MOSI. Il y a plusieurs données sur la trame.  
 Les données ne circulent que lorsque CS est à l'état bas puisque c'est dans ce cas que la SPI est activée.
 
 
 ---
 ## Conclusion
-ça marchait pas
-mais maintenant ça marche
+L'étude du fonctionnement de la SPI est essentiel pour programmer le driver de cet accéléromètre avec la STM32.  
+L'utilisation de STM32CubeIDE facilite grandement les configurations puisqu'il n'est pas nécessaire d'écrire les lignes de code, il suffit de choisir ce qu'on veut et le code est généré automatiquement.
+Finalement, le driver est fonctionnel.
