@@ -127,6 +127,7 @@ Ce diagramme présente les intéractions entre l'utilisateur, le microcontroleur
 ![Diagramme interactions](https://raw.githubusercontent.com/MoiseMoussetafa/Driver-LIS3DSH/main/docs/Diagramme_interactions.png?token=ARJF43GLW3NT554XG6WUMCLAD2UN6)
 
 Le microcontroleur et le LIS3DSH se regroupent sur un même objet, en l'occurrence la carte électronique. Ils communiquent constamment entre eux et lorsque l'utilisateur effectue un mouvement de la carte, l'inclinaison est détecté par l'accéléromètre qui retourne une réponse spécifique, provoquant l'allumage des LEDS correspondantes par le microcontroleur.
+Ce diagramme présente le cas où l'utilisateur effectue une inclinaison puis une remise à plat. Il est possible d'enchainer les inclinaisons sans faire une remise à plat, les LEDS s'allumeront en conséquence.
 
 ### Diagramme de flux
 Ce diagramme présente schématiquement l'organisation générale du déroulement du driver.
