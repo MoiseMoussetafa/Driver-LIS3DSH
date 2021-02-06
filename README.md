@@ -37,11 +37,11 @@ Les pins PD12, 13, 14 et 15 correspondent à des GPIO du microcontroleur, permet
 
 ***Câblage du LIS3DSH :***
 
-![MEMS](https://raw.githubusercontent.com/MoiseMoussetafa/Driver-LIS3DSH/main/docs/MEMS.png?token=ARJF43EAEUWCDZBNZ5UARD3ADFJGG)
+![MEMS](https://github.com/MoiseMoussetafa/Driver-LIS3DSH/blob/main/docs/MEMS.png)
 
 ***Câblage des LEDS :***
 
-![LEDS](https://raw.githubusercontent.com/MoiseMoussetafa/Driver-LIS3DSH/main/docs/LEDS.png?token=ARJF43AGLO6A26F4VFMYVVLADFJIU)
+![LEDS](https://github.com/MoiseMoussetafa/Driver-LIS3DSH/blob/main/docs/LEDS.png)
 
 
 ## Paramètres
@@ -124,7 +124,7 @@ Dans `Clock Configuration`, on modifie la valeur de **HCLK (MHz)** à **64**. On
 ### Diagramme des intéractions
 Ce diagramme présente les intéractions entre l'utilisateur, le microcontroleur et le LIS3DSH, après alimentation du système.
 
-![Diagramme interactions](https://raw.githubusercontent.com/MoiseMoussetafa/Driver-LIS3DSH/main/docs/Diagramme_interactions.png?token=ARJF43GLW3NT554XG6WUMCLAD2UN6)
+![Diagramme interactions](https://github.com/MoiseMoussetafa/Driver-LIS3DSH/blob/main/docs/Diagramme_interactions.png)
 
 Le microcontroleur et le LIS3DSH se regroupent sur un même objet, en l'occurrence la carte électronique. Ils communiquent constamment entre eux et lorsque l'utilisateur effectue un mouvement de la carte, l'inclinaison est détecté par l'accéléromètre qui retourne une réponse spécifique, provoquant l'allumage des LEDS correspondantes par le microcontroleur.
 Ce diagramme présente le cas où l'utilisateur effectue une inclinaison puis une remise à plat. Il est possible d'enchainer les inclinaisons sans faire une remise à plat, les LEDS s'allumeront en conséquence.
@@ -132,28 +132,28 @@ Ce diagramme présente le cas où l'utilisateur effectue une inclinaison puis un
 ### Diagramme de flux
 Ce diagramme présente schématiquement l'organisation générale du déroulement du driver.
 
-![Organigramme](https://raw.githubusercontent.com/MoiseMoussetafa/Driver-LIS3DSH/main/docs/Organigramme.png?token=ARJF43CO7QSJ6BL2CVLLXQLADFK2Q)
+![Organigramme](https://github.com/MoiseMoussetafa/Driver-LIS3DSH/blob/main/docs/Organigramme.png)
 
 Le driver démarre par une initialisation du système. Les données issues de l'accéléromètre sont ensuite récupérées.  
 S'il n'y a pas d'inclinaison détéctées, les LEDS restent éteintes et on analyse les données suivantes.  
 Dans le cas contraire, on identifie sur l'inclinaison est positive ou non sur l'axe X et la LED correspondante est allumée, puis de même sur l'axe Y.
 
 ## Acquisitions à l'oscilloscope
-![1CLK2MISO](https://raw.githubusercontent.com/MoiseMoussetafa/Driver-LIS3DSH/main/docs/1CLK_2MISO.png?token=ARJF43DBXOFUA7JCNM2VYP3AC3WUW)  
+![1CLK2MISO](https://github.com/MoiseMoussetafa/Driver-LIS3DSH/blob/main/docs/1CLK_2MISO.png)  
 Le signal bleu correspond au signal d'horloge.  
 Le signal rouge correspond au signal MISO, la donnée est 1101 0000, soit 0xD0.
 
-![1CLK2MOSI](https://raw.githubusercontent.com/MoiseMoussetafa/Driver-LIS3DSH/main/docs/1CLK_2MOSI.png?token=ARJF43ENNBVANA5M5YIJFDTAC3WU2)  
+![1CLK2MOSI](https://github.com/MoiseMoussetafa/Driver-LIS3DSH/blob/main/docs/1CLK_2MOSI.png)  
 Le signal bleu correspond au signal d'horloge.  
 Le signal rouge correspond au signal MOSI, la donnée est 1010 1010, soit 0xAA.  
 Le 1e bit est à 1, signifiant une lecture de registre. Le registre lu est donc 0010 1010, soit 0x2A. Cela correspond à OUT_Y_L (la donnée basse sur l'axe Y).
 
-![1CS2CLK](https://raw.githubusercontent.com/MoiseMoussetafa/Driver-LIS3DSH/main/docs/1CS_2CLK.png?token=ARJF43FURU6BQPXFFXQXNCTAC4M7Y)  
+![1CS2CLK](https://github.com/MoiseMoussetafa/Driver-LIS3DSH/blob/main/docs/1CS_2CLK.png)  
 Le signal bleu correspond au signal Chip Select, correspondant à l'activation de la SPI concernée.  
 Le signal rouge correspond au signal d'horloge.  
 Lorsque CS est à l'état bas, la SPI est activée et le signal d'horloge est envoyé. A l'inverse il n'y a pas de signal d'horloge lorsque CS est à l'état haut, désactivant la SPI.
 
-![1CS2MISO](https://raw.githubusercontent.com/MoiseMoussetafa/Driver-LIS3DSH/main/docs/1CS_2MISO.png?token=ARJF43BJ2LBTOMMB7OFPEZ3AC4M74)  
+![1CS2MISO](https://github.com/MoiseMoussetafa/Driver-LIS3DSH/blob/main/docs/1CS_2MISO.png)  
 Le signal bleu correspond au signal Chip Select, correspondant à l'activation de la SPI concernée.  
 Le signal rouge correspond au signal MOSI. Il y a plusieurs données sur la trame.  
 Les données ne circulent que lorsque CS est à l'état bas puisque c'est dans ce cas que la SPI est activée.
