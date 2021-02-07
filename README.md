@@ -155,8 +155,15 @@ Lorsque CS est à l'état bas, la SPI est activée et le signal d'horloge est en
 
 ![1CS2MISO](https://raw.githubusercontent.com/MoiseMoussetafa/Driver-LIS3DSH/main/docs/1CS_2MISO.png?token=ARJF43GS7YFHDGXAWYY5EHTAFEIJ2)  
 Le signal bleu correspond au signal Chip Select, correspondant à l'activation de la SPI concernée.  
-Le signal rouge correspond au signal MOSI. Il y a plusieurs données sur la trame.  
+Le signal rouge correspond au signal MISO. Il y a plusieurs données sur la trame.  
 Les données ne circulent que lorsque CS est à l'état bas puisque c'est dans ce cas que la SPI est activée.
+
+
+## Acquisition avec analyseur logique
+![logic](https://raw.githubusercontent.com/MoiseMoussetafa/Driver-LIS3DSH/main/docs/logic.png?token=ARJF43AWZ76X4KPYMPI2T6LAFFFRM)  
+Lorsque CS est à l'état bas, CLK est enclenchée.
+Sur cette trame, il y a 2 demandes de lecture sur les registres 0x29 et 0x2A, c'est-à-dire la donnée haute sur l'axe X et la donnée basse sur l'axe Y (le 1e bit étant à 1 pour la lecture, on retrouve respectivement 0xA9 et 0xAA).  
+Le capteur répond ensuite avec les données 0xFA et 0x28 pour ces 2 registres. Le capteur est à plat, les données récupérées correspondent bien à la marge de valeurs pour le capteur à plat.
 
 
 ---
